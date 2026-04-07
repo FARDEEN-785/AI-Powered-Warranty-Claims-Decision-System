@@ -1,0 +1,681 @@
+{
+  "metadata": {
+    "total_tests": 50,
+    "policy": "Laptop Warranty Policy",
+    "created_date": "2024-03-17",
+    "categories": {
+      "coverage_cases": 20,
+      "amount_edge_cases": 10,
+      "time_registration_cases": 8,
+      "documentation_cases": 7,
+      "fraud_risk_cases": 5
+    }
+  },
+  
+  "test_cases": {
+    "COVERAGE_CASES": {
+      "test_001": {
+        "claim_id": "TEST-001",
+        "customer_name": "John Doe",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Battery not holding charge, degraded below 80%",
+        "has_receipt": true,
+        "days_since_purchase": 90,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered for 12 months, amount under max",
+        "category": "Covered Item - Standard"
+      },
+      
+      "test_002": {
+        "claim_id": "TEST-002",
+        "customer_name": "Jane Smith",
+        "claim_type": "Motherboard",
+        "amount": 750.0,
+        "description": "CPU socket damage due to manufacturing defect",
+        "has_receipt": true,
+        "days_since_purchase": 180,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Motherboard covered for 24 months, amount under max ($800)",
+        "category": "Covered Item - Manufacturing Defect"
+      },
+      
+      "test_003": {
+        "claim_id": "TEST-003",
+        "customer_name": "Bob Wilson",
+        "claim_type": "RAM",
+        "amount": 400.0,
+        "description": "RAM module defective, causing system crashes",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "RAM covered for 24 months, defect fully covered",
+        "category": "Covered Item - Data Corruption"
+      },
+      
+      "test_004": {
+        "claim_id": "TEST-004",
+        "customer_name": "Alice Brown",
+        "claim_type": "Keyboard",
+        "amount": 200.0,
+        "description": "Multiple keys stuck and unresponsive",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Keyboard mechanical failures covered for 12 months",
+        "category": "Covered Item - Mechanical Failure"
+      },
+      
+      "test_005": {
+        "claim_id": "TEST-005",
+        "customer_name": "Charlie Davis",
+        "claim_type": "Charging Port",
+        "amount": 250.0,
+        "description": "Charging port not accepting charger, loose connection",
+        "has_receipt": true,
+        "days_since_purchase": 120,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Charging port defects covered for 12 months",
+        "category": "Covered Item - Hardware Defect"
+      },
+      
+      "test_006": {
+        "claim_id": "TEST-006",
+        "customer_name": "Diana Evans",
+        "claim_type": "Screen Damage",
+        "amount": 600.0,
+        "description": "Laptop screen cracked after drop",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "REJECT",
+        "expected_reason": "Screen damage is NOT covered under warranty",
+        "category": "Excluded Item - Physical Damage"
+      },
+      
+      "test_007": {
+        "claim_id": "TEST-007",
+        "customer_name": "Edward Frank",
+        "claim_type": "Water Damage",
+        "amount": 800.0,
+        "description": "Coffee spilled on laptop keyboard and motherboard",
+        "has_receipt": true,
+        "days_since_purchase": 80,
+        "expected_decision": "REJECT",
+        "expected_reason": "Water damage is NOT covered under any circumstances",
+        "category": "Excluded Item - Liquid Damage"
+      },
+      
+      "test_008": {
+        "claim_id": "TEST-008",
+        "customer_name": "Frank Green",
+        "claim_type": "Physical Damage",
+        "amount": 700.0,
+        "description": "Laptop dropped, chassis bent, internal damage",
+        "has_receipt": true,
+        "days_since_purchase": 110,
+        "expected_decision": "REJECT",
+        "expected_reason": "Physical damage from impacts is NOT covered",
+        "category": "Excluded Item - Impact Damage"
+      },
+      
+      "test_009": {
+        "claim_id": "TEST-009",
+        "customer_name": "Grace Harris",
+        "claim_type": "Software Issue",
+        "amount": 300.0,
+        "description": "Operating system corrupted, virus infection",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "REJECT",
+        "expected_reason": "Software issues and virus damage are NOT covered",
+        "category": "Excluded Item - Software"
+      },
+      
+      "test_010": {
+        "claim_id": "TEST-010",
+        "customer_name": "Henry Ice",
+        "claim_type": "Theft",
+        "amount": 1200.0,
+        "description": "Laptop stolen from office",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "REJECT",
+        "expected_reason": "Theft is NOT covered under hardware warranty",
+        "category": "Excluded Item - Theft"
+      },
+      
+      "test_011": {
+        "claim_id": "TEST-011",
+        "customer_name": "Iris Jones",
+        "claim_type": "Cosmetic Damage",
+        "amount": 100.0,
+        "description": "Scratches and dents on laptop chassis",
+        "has_receipt": true,
+        "days_since_purchase": 90,
+        "expected_decision": "REJECT",
+        "expected_reason": "Cosmetic wear and scratches are NOT covered",
+        "category": "Excluded Item - Cosmetic"
+      },
+      
+      "test_012": {
+        "claim_id": "TEST-012",
+        "customer_name": "Jack King",
+        "claim_type": "Unauthorized Repair",
+        "amount": 450.0,
+        "description": "Damage from unauthorized repair attempt",
+        "has_receipt": true,
+        "days_since_purchase": 130,
+        "expected_decision": "REJECT",
+        "expected_reason": "Damage from unauthorized repairs voids warranty",
+        "category": "Excluded Item - Unauthorized Repair"
+      },
+      
+      "test_013": {
+        "claim_id": "TEST-013",
+        "customer_name": "Karen Lee",
+        "claim_type": "Unknown Component",
+        "amount": 350.0,
+        "description": "Unknown component failure",
+        "has_receipt": true,
+        "days_since_purchase": 140,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Claim type not clearly covered or excluded - needs human review",
+        "category": "Unclear - Human Review Needed"
+      },
+      
+      "test_014": {
+        "claim_id": "TEST-014",
+        "customer_name": "Leo Martin",
+        "claim_type": "Hardware Malfunction",
+        "amount": 400.0,
+        "description": "Unspecified hardware malfunction",
+        "has_receipt": true,
+        "days_since_purchase": 160,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Vague claim type needs clarification - human review required",
+        "category": "Unclear - Needs Clarification"
+      },
+      
+      "test_015": {
+        "claim_id": "TEST-015",
+        "customer_name": "Mona Nelson",
+        "claim_type": "Battery",
+        "amount": 500.0,
+        "description": "Battery replacement at edge case max amount",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered, amount equals max coverage ($500)",
+        "category": "Edge Case - Max Amount"
+      },
+      
+      "test_016": {
+        "claim_id": "TEST-016",
+        "customer_name": "Oscar Price",
+        "claim_type": "Motherboard",
+        "amount": 800.0,
+        "description": "Full motherboard replacement",
+        "has_receipt": true,
+        "days_since_purchase": 250,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Motherboard covered for 24 months, at max amount ($800)",
+        "category": "Edge Case - Max Coverage Period"
+      },
+      
+      "test_017": {
+        "claim_id": "TEST-017",
+        "customer_name": "Patricia Quinn",
+        "claim_type": "Battery",
+        "amount": 50.0,
+        "description": "Minor battery issue",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered, minimal amount well under max",
+        "category": "Edge Case - Low Amount"
+      },
+      
+      "test_018": {
+        "claim_id": "TEST-018",
+        "customer_name": "Quinn Roberts",
+        "claim_type": "RAM",
+        "amount": 250.0,
+        "description": "Single RAM module replacement",
+        "has_receipt": true,
+        "days_since_purchase": 180,
+        "expected_decision": "APPROVE",
+        "expected_reason": "RAM covered for 24 months with full coverage",
+        "category": "Covered Item - Full Coverage"
+      },
+      
+      "test_019": {
+        "claim_id": "TEST-019",
+        "customer_name": "Ryan Smith",
+        "claim_type": "Keyboard",
+        "amount": 180.0,
+        "description": "Keyboard replacement for stuck keys",
+        "has_receipt": true,
+        "days_since_purchase": 90,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Keyboard mechanical failures covered for 12 months",
+        "category": "Covered Item - Mechanical"
+      },
+      
+      "test_020": {
+        "claim_id": "TEST-020",
+        "customer_name": "Sarah Taylor",
+        "claim_type": "Charging Port",
+        "amount": 200.0,
+        "description": "Charging port replacement",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Charging port defects covered for 12 months",
+        "category": "Covered Item - Standard"
+      }
+    },
+    
+    "AMOUNT_EDGE_CASES": {
+      "test_021": {
+        "claim_id": "TEST-021",
+        "customer_name": "Uma Upadhyay",
+        "claim_type": "Battery",
+        "amount": 501.0,
+        "description": "Battery exceeds max by $1",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Amount ($501) slightly exceeds max coverage ($500)",
+        "category": "Amount Edge Case - Over Max"
+      },
+      
+      "test_022": {
+        "claim_id": "TEST-022",
+        "customer_name": "Victor Vasquez",
+        "claim_type": "Battery",
+        "amount": 499.99,
+        "description": "Battery just under max",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered, amount just under max ($500)",
+        "category": "Amount Edge Case - Just Under Max"
+      },
+      
+      "test_023": {
+        "claim_id": "TEST-023",
+        "customer_name": "Wendy White",
+        "claim_type": "Battery",
+        "amount": 800.0,
+        "description": "Battery claim far exceeds max",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Amount ($800) exceeds max coverage ($500) significantly",
+        "category": "Amount Edge Case - Significantly Over"
+      },
+      
+      "test_024": {
+        "claim_id": "TEST-024",
+        "customer_name": "Xavier Xander",
+        "claim_type": "Motherboard",
+        "amount": 801.0,
+        "description": "Motherboard exceeds max by $1",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Amount ($801) exceeds max coverage ($800)",
+        "category": "Amount Edge Case - Over Max"
+      },
+      
+      "test_025": {
+        "claim_id": "TEST-025",
+        "customer_name": "Yara Young",
+        "claim_type": "Motherboard",
+        "amount": 1000.0,
+        "description": "Motherboard significantly over max",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Amount ($1000) far exceeds max coverage ($800)",
+        "category": "Amount Edge Case - Significantly Over"
+      },
+      
+      "test_026": {
+        "claim_id": "TEST-026",
+        "customer_name": "Zoe Zimmerman",
+        "claim_type": "Battery",
+        "amount": 0.01,
+        "description": "Minimal penny claim",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered, minimal claim amount",
+        "category": "Amount Edge Case - Minimal"
+      },
+      
+      "test_027": {
+        "claim_id": "TEST-027",
+        "customer_name": "Adam Anderson",
+        "claim_type": "Battery",
+        "amount": 0.0,
+        "description": "Zero amount claim",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "REJECT",
+        "expected_reason": "Zero amount claim is invalid",
+        "category": "Amount Edge Case - Zero"
+      },
+      
+      "test_028": {
+        "claim_id": "TEST-028",
+        "customer_name": "Bella Brown",
+        "claim_type": "Battery",
+        "amount": -100.0,
+        "description": "Negative amount (refund request)",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "REJECT",
+        "expected_reason": "Negative amount is invalid",
+        "category": "Amount Edge Case - Negative"
+      },
+      
+      "test_029": {
+        "claim_id": "TEST-029",
+        "customer_name": "Carl Chen",
+        "claim_type": "Motherboard",
+        "amount": 800.0,
+        "description": "Motherboard at exact max",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Motherboard covered for 24 months, at max amount ($800)",
+        "category": "Amount Edge Case - Exact Max"
+      },
+      
+      "test_030": {
+        "claim_id": "TEST-030",
+        "customer_name": "Diana Davis",
+        "claim_type": "RAM",
+        "amount": 1500.0,
+        "description": "Excessive RAM claim",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "REVIEW",
+        "expected_reason": "No max set for RAM, high amount needs review",
+        "category": "Amount Edge Case - No Max Defined"
+      }
+    },
+    
+    "TIME_REGISTRATION_CASES": {
+      "test_031": {
+        "claim_id": "TEST-031",
+        "customer_name": "Evan Evans",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim within 12-month coverage",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered for 12 months, claim within period",
+        "category": "Time Case - Within Coverage"
+      },
+      
+      "test_032": {
+        "claim_id": "TEST-032",
+        "customer_name": "Fiona Foster",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim at 12-month boundary",
+        "has_receipt": true,
+        "days_since_purchase": 365,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered for 12 months, claim at boundary",
+        "category": "Time Case - At Boundary"
+      },
+      
+      "test_033": {
+        "claim_id": "TEST-033",
+        "customer_name": "George Garcia",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim after 12-month coverage expired",
+        "has_receipt": true,
+        "days_since_purchase": 400,
+        "expected_decision": "REJECT",
+        "expected_reason": "Battery coverage expired (12 months), claim made at day 400",
+        "category": "Time Case - After Expiration"
+      },
+      
+      "test_034": {
+        "claim_id": "TEST-034",
+        "customer_name": "Hannah Harris",
+        "claim_type": "Motherboard",
+        "amount": 700.0,
+        "description": "Claim at 24-month coverage boundary",
+        "has_receipt": true,
+        "days_since_purchase": 730,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Motherboard covered for 24 months, claim at boundary",
+        "category": "Time Case - Extended Coverage Boundary"
+      },
+      
+      "test_035": {
+        "claim_id": "TEST-035",
+        "customer_name": "Ivan Ivanov",
+        "claim_type": "Motherboard",
+        "amount": 700.0,
+        "description": "Claim after 24-month coverage expired",
+        "has_receipt": true,
+        "days_since_purchase": 800,
+        "expected_decision": "REJECT",
+        "expected_reason": "Motherboard coverage expired (24 months), claim made at day 800",
+        "category": "Time Case - After Extended Coverage"
+      },
+      
+      "test_036": {
+        "claim_id": "TEST-036",
+        "customer_name": "Julia Johnson",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim on day 1 of purchase",
+        "has_receipt": true,
+        "days_since_purchase": 1,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered from day 1",
+        "category": "Time Case - Immediate Claim"
+      },
+      
+      "test_037": {
+        "claim_id": "TEST-037",
+        "customer_name": "Kevin King",
+        "claim_type": "RAM",
+        "amount": 400.0,
+        "description": "Claim near 24-month expiration",
+        "has_receipt": true,
+        "days_since_purchase": 720,
+        "expected_decision": "APPROVE",
+        "expected_reason": "RAM covered for 24 months, claim within period",
+        "category": "Time Case - Near Extended Expiration"
+      },
+      
+      "test_038": {
+        "claim_id": "TEST-038",
+        "customer_name": "Laura Lee",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim at 6-month mark",
+        "has_receipt": true,
+        "days_since_purchase": 180,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered for 12 months, claim at 6-month mark",
+        "category": "Time Case - Mid-Period"
+      }
+    },
+    
+    "DOCUMENTATION_CASES": {
+      "test_039": {
+        "claim_id": "TEST-039",
+        "customer_name": "Mark Martin",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim with valid receipt",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Battery covered, valid receipt provided",
+        "category": "Documentation - With Receipt"
+      },
+      
+      "test_040": {
+        "claim_id": "TEST-040",
+        "customer_name": "Nancy Nelson",
+        "claim_type": "Battery",
+        "amount": 300.0,
+        "description": "Claim without receipt",
+        "has_receipt": false,
+        "days_since_purchase": 100,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Original receipt required - needs human review",
+        "category": "Documentation - Missing Receipt"
+      },
+      
+      "test_041": {
+        "claim_id": "TEST-041",
+        "customer_name": "Oscar O'Brien",
+        "claim_type": "Motherboard",
+        "amount": 700.0,
+        "description": "High-value claim with receipt",
+        "has_receipt": true,
+        "days_since_purchase": 200,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Motherboard covered, valid documentation",
+        "category": "Documentation - High Value"
+      },
+      
+      "test_042": {
+        "claim_id": "TEST-042",
+        "customer_name": "Patricia Parker",
+        "claim_type": "Motherboard",
+        "amount": 700.0,
+        "description": "High-value claim without receipt",
+        "has_receipt": false,
+        "days_since_purchase": 200,
+        "expected_decision": "REVIEW",
+        "expected_reason": "High-value claim missing receipt - needs verification",
+        "category": "Documentation - High Value Missing"
+      },
+      
+      "test_043": {
+        "claim_id": "TEST-043",
+        "customer_name": "Quinn Quinn",
+        "claim_type": "Keyboard",
+        "amount": 150.0,
+        "description": "Low-value claim with receipt",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "expected_decision": "APPROVE",
+        "expected_reason": "Keyboard covered, valid receipt",
+        "category": "Documentation - Low Value"
+      },
+      
+      "test_044": {
+        "claim_id": "TEST-044",
+        "customer_name": "Rachel Roberts",
+        "claim_type": "Keyboard",
+        "amount": 150.0,
+        "description": "Low-value claim without receipt",
+        "has_receipt": false,
+        "days_since_purchase": 100,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Missing receipt - even low-value claims need documentation",
+        "category": "Documentation - Low Value Missing"
+      },
+      
+      "test_045": {
+        "claim_id": "TEST-045",
+        "customer_name": "Samuel Scott",
+        "claim_type": "RAM",
+        "amount": 350.0,
+        "description": "Mid-value claim with receipt",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "expected_decision": "APPROVE",
+        "expected_reason": "RAM covered for 24 months, valid receipt",
+        "category": "Documentation - Mid Value"
+      }
+    },
+    
+    "FRAUD_RISK_CASES": {
+      "test_046": {
+        "claim_id": "TEST-046",
+        "customer_name": "Tina Turner",
+        "claim_type": "Battery",
+        "amount": 500.0,
+        "description": "First claim from customer",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "customer_claim_count": 1,
+        "expected_decision": "APPROVE",
+        "expected_reason": "First claim, legitimate warranty request",
+        "category": "Fraud Risk - Normal"
+      },
+      
+      "test_047": {
+        "claim_id": "TEST-047",
+        "customer_name": "Ulysses Underwood",
+        "claim_type": "Battery",
+        "amount": 500.0,
+        "description": "Fifth claim from same customer in 6 months",
+        "has_receipt": true,
+        "days_since_purchase": 100,
+        "customer_claim_count": 5,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Multiple claims from same customer - potential fraud pattern",
+        "category": "Fraud Risk - Multiple Claims"
+      },
+      
+      "test_048": {
+        "claim_id": "TEST-048",
+        "customer_name": "Veronica Vasquez",
+        "claim_type": "Motherboard",
+        "amount": 5000.0,
+        "description": "Extremely high-value claim",
+        "has_receipt": true,
+        "days_since_purchase": 150,
+        "customer_claim_count": 1,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Claim amount far exceeds typical costs - fraud risk",
+        "category": "Fraud Risk - Excessive Amount"
+      },
+      
+      "test_049": {
+        "claim_id": "TEST-049",
+        "customer_name": "William Wilson",
+        "claim_type": "Battery",
+        "amount": 500.0,
+        "description": "Claim made 2 days after purchase",
+        "has_receipt": true,
+        "days_since_purchase": 2,
+        "customer_claim_count": 1,
+        "expected_decision": "REVIEW",
+        "expected_reason": "Claim too soon after purchase - potential warranty abuse",
+        "category": "Fraud Risk - Premature Claim"
+      },
+      
+      "test_050": {
+        "claim_id": "TEST-050",
+        "customer_name": "Xena Xerxes",
+        "claim_type": "Motherboard",
+        "amount": 800.0,
+        "description": "Pattern: high-value claim, 5 previous claims, claim at day 2",
+        "has_receipt": true,
+        "days_since_purchase": 2,
+        "customer_claim_count": 5,
+        "expected_decision": "REJECT",
+        "expected_reason": "Multiple fraud indicators: early claim, frequent claimer, high value",
+        "category": "Fraud Risk - High Risk Pattern"
+      }
+    }
+  }
+}
